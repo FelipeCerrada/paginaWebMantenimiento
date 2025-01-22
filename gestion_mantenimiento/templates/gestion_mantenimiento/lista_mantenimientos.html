@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Mantenimiento</title>
+</head>
+<body>
+    <h1>Lista de Mantenimientos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Realizado por</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mantenimiento in mantenimientos %}
+            <tr>
+                <td>{{ mantenimiento.nombre_equipo }}</td>
+                <td>{{ mantenimiento.descripcion }}</td>
+                <td>{{ mantenimiento.fecha_mantenimiento }}</td>
+                <td>{{ mantenimiento.tipo_mantenimiento }}</td>
+                <td>{{ mantenimiento.realizado_por }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
