@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Mantenimiento
+from .models import *
 
 def lista_mantenimientos(request):
     mantenimientos = Mantenimiento.objects.all()
