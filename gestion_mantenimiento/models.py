@@ -1,15 +1,44 @@
 from django.db import models
 
+class Cliente(models.Model):
+    nombre = models.CharField(max_length=255)
+    grupo = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nombre
+
+class Proyecto(models.Model):
+    nombre = models.CharField(max_length=255)
+    dueño = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombre
+
+
 class Matriz(models.Model):
     nombre = models.CharField(max_length=255)
     ubicacion = models.CharField(max_length=255)
     tipo = models.CharField(max_length=100)
-    fabricante = models.CharField(max_length=100)
     capacidad_golpes = models.PositiveIntegerField(blank=True, null=True)
     cont_golpes_actual = models.PositiveIntegerField()
 
     def __str__(self):
         return self.nombre
+
+class ProyectoPorCliente(models.Model):
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.proyecto.nombre} (De {self.cliente.nombre})"
+
+class MatricesPorProyecto(models.Model):
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+    matriz = models.ForeignKey(Matriz, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.matriz.nombre} (De {self.proyecto.nombre})"
+
 
 class Tecnico(models.Model):
     nombre = models.CharField(max_length=255)
