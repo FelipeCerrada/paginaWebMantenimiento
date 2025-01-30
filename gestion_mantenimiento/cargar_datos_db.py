@@ -1,4 +1,4 @@
-#from .models import *
+
 
 def crear_datos_db():
     #from models import Matriz, Tecnico, TipoMantenimiento, Repuesto, Herramienta, OrdenTrabajo, TecnicosPorOT, RepuestosPorOT, HerramientasPorOT, HistorialMantenimiento

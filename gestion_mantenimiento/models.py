@@ -1,14 +1,14 @@
 from django.db import models
 
 class Cliente(models.Model):
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255, primary_key=True)
     grupo = models.CharField(max_length=255)
 
     def __str__(self):
         return self.nombre
 
 class Proyecto(models.Model):
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255, primary_key=True)
     dueño = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -16,7 +16,7 @@ class Proyecto(models.Model):
 
 
 class Matriz(models.Model):
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255, primary_key=True)
     ubicacion = models.CharField(max_length=255)
     tipo = models.CharField(max_length=100)
     capacidad_golpes = models.PositiveIntegerField(blank=True, null=True)
@@ -42,6 +42,7 @@ class MatricesPorProyecto(models.Model):
 
 class Tecnico(models.Model):
     nombre = models.CharField(max_length=255)
+    legajo = models.IntegerField(primary_key=True)
     especialidad = models.CharField(max_length=100)
     disponibilidad = models.CharField(max_length=100)
 
@@ -49,13 +50,13 @@ class Tecnico(models.Model):
         return self.nombre
 
 class TipoMantenimiento(models.Model):
-    descripcion = models.CharField(max_length=255)
+    descripcion = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.descripcion
 
 class Repuesto(models.Model):
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255,unique=True)
     descripcion = models.TextField()
     cantidad_disponible = models.PositiveIntegerField()
     unidad_medida = models.CharField(max_length=50)
